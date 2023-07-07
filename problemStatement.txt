@@ -1,0 +1,35 @@
+Problem Statement: Design an interactive user interface that allows users to manage multiple tabs with the ability to open, delete, edit, and view content associated with each tab when it is active.
+
+Description:
+In today's digital world, users often work with multiple tabs or windows simultaneously to manage 
+different tasks or projects. However, existing tab management systems lack user-friendly features 
+for organizing and manipulating tab content efficiently. Therefore, there is a need for an intuitive 
+interface that enables users to open, delete, edit, and easily access relevant content within each active tab.
+
+The problem can be further elaborated by outlining the key requirements and challenges:
+
+1. Opening Tabs: Users should be able to open new tabs and switch between them effortlessly. The interface
+ should provide clear indicators to show which tab is currently active.
+
+2. Deleting Tabs: Users should have the ability to close or delete tabs they no longer need. The interface 
+should provide a convenient way to perform this action while preserving any unsaved data or offering a prompt for confirmation.
+
+3. Editing Tabs: Users may need to rename or modify the properties of individual tabs. The interface should 
+allow users to edit tab titles or other metadata, providing a seamless way to update tab information.
+
+4. Viewing Tab Content: When a tab is active, users should be able to view and interact with the content 
+associated with that tab. The interface should provide a dedicated area to display the content, whether
+ it is a document, webpage, or any other form of digital information.
+
+5. Organizing Tab Content: Users may want to organize or group related tabs together for easier navigation.
+ The interface should support grouping or categorizing tabs based on user-defined criteria, enabling 
+ efficient management of complex workflows.
+
+6. Intuitive User Experience: The interface should be intuitive, with clear visual cues and 
+easy-to-use controls for tab management. Users should be able to perform actions such as 
+opening, deleting, editing, and viewing content with minimal effort and without the need for extensive 
+learning or training.
+
+By addressing the challenges outlined above, the proposed solution will enhance user productivity 
+and provide a seamless tab management experience, empowering users to efficiently handle multiple tasks
+or projects simultaneously.
