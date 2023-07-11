@@ -11,6 +11,24 @@ const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
     setAllTabs([...filteredTabs]);
   };
 
+  const handleAddTab = (length) => {
+    if (allTabs.length < 6) {
+      let defaultTab = {
+        name: '',
+        id: !allTabs.length ? 0 : length + 1,
+        content: '',
+        isDragging: false,
+        searchInput: '',
+        searchResult: [],
+      };
+      console.log('alll', length);
+      let newAllTabs = [...allTabs];
+      newAllTabs.push(defaultTab);
+      setAllTabs([...newAllTabs]);
+      setIsActive(length + 1);
+    }
+  };
+
   const handleFocus = (id) => {
     setIsActive(id);
   };
@@ -38,17 +56,13 @@ const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
               setAllTabs={setAllTabs}
               tabItemDrag={tabItemDrag}
               tabItemDragOver={tabItemDragOver}
+              handleAddTab={handleAddTab}
             />
           </div>
         );
       })}
 
-      <AddTab
-        loading={loading}
-        allTabs={allTabs}
-        setAllTabs={setAllTabs}
-        setIsActive={setIsActive}
-      />
+      <AddTab loading={loading} allTabs={allTabs} handleAddTab={handleAddTab} />
     </div>
   );
 };

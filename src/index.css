@@ -96,8 +96,17 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: #2c2a2a; */
   position: relative;
+}
+
+.rightClick-list{
+  color: #fff;
+  font-size: 12px !important;
+  cursor: pointer;
+}
+
+.rightClick-list:hover{
+  background: rgba(217, 217, 217, 0.31);
 }
 
 .websearch-container{

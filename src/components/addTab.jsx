@@ -2,25 +2,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Tooltip } from '@mui/material';
 
-const AddTab = ({ allTabs, setAllTabs, setIsActive, loading }) => {
-  const handleAddTab = (length) => {
-    if (allTabs.length < 6) {
-      let defaultTab = {
-        name: '',
-        id: !allTabs.length ? 0 : length + 1,
-        content: '',
-        isDragging: false,
-        searchInput: '',
-        searchResult: [],
-      };
-      console.log('alll', length);
-      let newAllTabs = [...allTabs];
-      newAllTabs.push(defaultTab);
-      setAllTabs([...newAllTabs]);
-      setIsActive(length + 1);
-    }
-  };
-  console.log(allTabs.length, 'alll');
+const AddTab = ({ allTabs, loading, handleAddTab }) => {
   return (
     <>
       {(allTabs.length < 6 || !loading) && (

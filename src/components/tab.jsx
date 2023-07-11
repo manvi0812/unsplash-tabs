@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { InputAdornment, TextField, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
+import TabPopover from './tabPopover';
 
 const Tab = ({
   tab,
@@ -14,9 +15,11 @@ const Tab = ({
   setAllTabs,
   tabItemDragOver,
   tabItemDrag,
+  handleAddTab,
   index,
 }) => {
   const [isTabNameSaved, setIsTabNameSaved] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleChange = (e, tabId) => {
     let newAllTabs = [...allTabs];
@@ -82,6 +85,10 @@ const Tab = ({
     setAllTabs([...newAllTabs]);
   };
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   return (
     <div
       className='tab'
@@ -92,6 +99,11 @@ const Tab = ({
       onDragEnd={handleOnDragEnd}
     >
       <TextField
+        onContextMenu={(e) => {
+          e.preventDefault();
+          handleClick(e);
+          return false;
+        }}
         id='input-with-icon-textfield'
         InputProps={{
           endAdornment: (
@@ -149,6 +161,16 @@ const Tab = ({
         className='tabInput'
       />
       {tab.isDragging ? <div className='dragIndicator'></div> : null}
+      {anchorEl && (
+        <TabPopover
+          handleCloseTab={handleCloseTab}
+          tab={tab}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+          handleAddTab={handleAddTab}
+          allTabs={allTabs}
+        />
+      )}
     </div>
   );
 };
