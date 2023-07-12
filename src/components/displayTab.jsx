@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import SearchResult from './searchResult';
 import WebSearch from './webSearch';
 import axios from 'axios';
+
 // import axios from 'axios';
 
 const DisplayTab = React.memo(({ tab, allTabs, setAllTabs, setLoading }) => {
@@ -64,15 +65,17 @@ const DisplayTab = React.memo(({ tab, allTabs, setAllTabs, setLoading }) => {
         />
 
         {tab.searchResult?.length ? (
-          <SearchResult
-            orientation={orientation}
-            setOrientation={setOrientation}
-            sortBy={sortBy}
-            setsortBy={setsortBy}
-            data={tab.searchResult}
-            handleClick={handleClick}
-            tab={tab}
-          />
+          <>
+            <SearchResult
+              orientation={orientation}
+              setOrientation={setOrientation}
+              sortBy={sortBy}
+              setsortBy={setsortBy}
+              data={tab.searchResult}
+              handleClick={handleClick}
+              tab={tab}
+            />
+          </>
         ) : null}
       </div>
     </>

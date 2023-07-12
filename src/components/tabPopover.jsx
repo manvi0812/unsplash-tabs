@@ -25,9 +25,8 @@ const TabPopover = ({
   tab,
   handleAddTab,
   allTabs,
+  setAllTabs,
 }) => {
-  console.log(tab);
-
   const RIGHTCLICK_LIST = [
     {
       label: 'Add new tab to the right',
@@ -46,24 +45,30 @@ const TabPopover = ({
       label: 'Close other tabs',
       yPadding: 0,
       hasDivider: false,
-      //   onclick: handleCloseTab(tab.id),
+      onclick: () => handleCloseOtherTabs(tab.id),
       disable: allTabs.length === 1,
     },
     {
       label: 'Close tabs to the right',
       yPadding: 5,
       hasDivider: true,
-      //   onclick: handleCloseTab(tab.id),
+      onclick: () => handleCloseTabsToTheRight(tab.id),
       disable: allTabs[allTabs.length - 1].id === tab.id,
     },
     {
       label: 'Pin',
       yPadding: 5,
-      hasDivider: true,
+      hasDivider: false,
       //   onclick: handleCloseTab(tab.id),
     },
     {
-      label: 'Change color of tab',
+      label: 'Duplicate',
+      yPadding: 0,
+      hasDivider: false,
+      //   onclick: handleCloseTab(tab.id),
+    },
+    {
+      label: 'Change the color of tab',
       yPadding: 5,
       hasDivider: false,
       //   onclick: handleCloseTab(tab.id),
@@ -72,6 +77,18 @@ const TabPopover = ({
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCloseOtherTabs = (id) => {
+    let newAllTabs = [...allTabs];
+    let leftArray = newAllTabs.filter((t) => t.id === id);
+    setAllTabs([...leftArray]);
+  };
+
+  const handleCloseTabsToTheRight = (id) => {
+    let index = allTabs.map((tab) => tab.id).indexOf(id);
+    let leftArray = allTabs.slice(0, index + 1);
+    setAllTabs([...leftArray]);
   };
 
   const open = Boolean(anchorEl);

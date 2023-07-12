@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ConfirmationDialog from './confirmationDialog';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const WebSearch = ({
   setAllTabs,
@@ -14,10 +15,8 @@ const WebSearch = ({
   setToggle,
 }) => {
   const [search, setSearch] = useState('');
-
   const [shouldChange, setShouldChange] = useState(false);
 
-  // const [randomPhoto, setRandomPhoto] = useState({});
   let activeTab = allTabs.filter((newTab) => newTab.id === tab.id);
 
   const handleChange = (e) => {
@@ -32,41 +31,17 @@ const WebSearch = ({
       activeTab[0].name = activeTab[0]?.searchInput;
       setAllTabs([...newAllTabs]);
     }
-    console.log(activeTab);
   }, [activeTab, allTabs, setAllTabs, shouldChange, tab.id]);
 
-  // const handleClick = (data) => {
-  //   let axiosParams = {};
-  //   if (orientation !== 'All') axiosParams.orientation = orientation;
-
-  //   const options = {
-  //     method: 'GET',
-  //     url: `https://api.unsplash.com/search/photos?page=1&query=${data}`,
-  //     params: axiosParams,
-  //     headers: {
-  //       Authorization: 'Client-ID z3DNUdVcDT7LpmGJFhOd7n7TxB-YdBxTqTpvOzjOvq8',
-  //     },
-  //   };
-  //   setLoading(true);
-  //   axios
-  //     .request(options)
-  //     .then((response) => {
-  //       let newAllTabs = [...allTabs];
-  //       let activeTab = newAllTabs.filter((newTab) => newTab.id === tab.id);
-  //       if (activeTab[0].name !== '') setToggle(true);
-  //       else activeTab[0].name = data;
-  //       activeTab[0].searchInput = data;
-  //       activeTab[0].searchResult = response.data.results;
-  //       setAllTabs([...newAllTabs]);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   return (
-    <div className='websearch-container'>
+    <div
+      className='websearch-container'
+      style={
+        tab?.searchResult.length
+          ? { backgroundImage: `url(${tab?.searchResult[0].urls?.full})` }
+          : {}
+      }
+    >
       <div className='mb-5'>
         <h1 className='unsplash-head'>Unsplash Clone</h1>
         <p className='unsplash-head'>
@@ -80,11 +55,12 @@ const WebSearch = ({
         placeholder='Search high-resolution images'
         value={search !== '' ? search : activeTab[0]?.searchInput}
         sx={{
-          '& .MuiOutlinedInput-root:hover,.MuiOutlinedInput-root.Mui-focused': {
-            '& > fieldset': {
-              borderColor: 'transparent',
+          '& .MuiOutlinedInput-root:hover,.MuiOutlinedInput-root.Mui-focused,.MuiOutlinedInput-root':
+            {
+              '& > fieldset': {
+                borderColor: 'transparent',
+              },
             },
-          },
           color: '#101010',
           borderRadius: '30px',
           input: {
@@ -121,6 +97,17 @@ const WebSearch = ({
         autoComplete='off'
         variant='outlined'
       />
+      {tab.searchResult.length ? (
+        <ExpandMoreIcon
+          // sx={{ color: '#fff', fontSize: '2rem' }}
+          className='scroll-arrow'
+          onClick={() => {
+            let scrollEl = document.getElementById('result');
+            console.log(scrollEl);
+            scrollEl.scrollIntoView({ behavior: 'smooth' }, true);
+          }}
+        />
+      ) : null}
       {toggle && (
         <ConfirmationDialog
           toggle={toggle}

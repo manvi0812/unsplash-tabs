@@ -169,6 +169,7 @@ const Tab = ({
           setAnchorEl={setAnchorEl}
           handleAddTab={handleAddTab}
           allTabs={allTabs}
+          setAllTabs={setAllTabs}
         />
       )}
     </div>
