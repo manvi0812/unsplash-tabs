@@ -124,7 +124,7 @@ const SearchResult = ({
 
   return (
     <div className='searchItemsContainer row d-flex' id='result'>
-      <div className='d-flex justify-content-between align-items-center'>
+      <div className='result-head-wrapper'>
         <p className='resultHead'>
           Search Results <DynamicFeedIcon />
         </p>
@@ -194,7 +194,7 @@ const SearchResult = ({
         <DialogTitle style={{ fontWeight: '900', fontSize: '1.5rem' }}>
           {dialogData.description}
         </DialogTitle>
-        <div className='d-flex'>
+        <div className='result-dialog'>
           <DialogContent
             style={{ borderRight: '1px solid', overflow: 'hidden' }}
           >
@@ -253,7 +253,7 @@ const SearchResult = ({
               yLabel='value'
             />
           </DialogContent>
-          <div className='w-25 dialog-right-wrapper'>
+          <div className='dialog-right-wrapper'>
             <p className='dialog-content pt-2'>User Details</p>
             <p className='d-flex justify-content-evenly align-items-center'>
               {dialogData.user?.profile_image.medium ? (

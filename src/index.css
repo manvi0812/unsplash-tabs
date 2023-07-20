@@ -226,6 +226,11 @@ background: #616577;
   align-items: center;
   padding: 2rem 1rem;  
 }
+.result-head-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .resultHead{
     color: #fff;
     text-align: left;
@@ -269,6 +274,7 @@ background: #616577;
 }
 .dialog-right-wrapper{
   padding: 10px;
+  width: 25%;
 }
 .dialog-right-wrapper > p{
   margin-bottom: 10px;
@@ -294,6 +300,10 @@ background: #616577;
   border-radius: 50%;
   color: #646cff;
   font-weight: 900;
+}
+
+.result-dialog{
+  display: flex;
 }
 .dialog-content{
   color: #fff !important;
@@ -394,5 +404,18 @@ background: #616577;
 @media (max-width: 768px){
   .unsplash-head{
     width: 100%;
+  }
+  .result-dialog{
+    flex-direction: column;
+  }
+  .dialog-right-wrapper{
+    width: 100% ;
+    padding: 0 2rem;
+  }
+  .resultHead{
+    margin-left: 0;
+  }
+  .result-head-wrapper{
+    flex-direction: column-reverse;
   }
 }

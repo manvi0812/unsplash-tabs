@@ -118,7 +118,7 @@ const Tab = ({
     setAllTabs([...sortedTabs]);
   }, [tab.isPinned]);
 
-  const handleColorPicker = (color, event) => {
+  const handleColorPicker = (color) => {
     let newAllTabs = [...allTabs];
     let filteredTab = newAllTabs.filter((t) => t.id === colorPicker.id);
 
