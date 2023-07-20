@@ -2,7 +2,6 @@
 import { FormControl, MenuItem, Select } from '@mui/material';
 
 const SelectParams = ({ handleChange, value, label, options }) => {
-  console.log(value, options);
   return (
     <div className='mx-2'>
       <p className='m-0 resultHead select-label'>{label}</p>

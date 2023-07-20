@@ -1,36 +1,48 @@
 /* eslint-disable react/prop-types */
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Tab from './tab';
 import AddTab from './addTab';
+import { v4 as uuidv4 } from 'uuid';
 
 const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
+  const [colorPicker, setColorPicker] = useState({ id: null, color: '' });
+
   const handleCloseTab = (id) => {
     let newAllTabs = [...allTabs];
     let filteredTabs = newAllTabs.filter((tab) => tab.id !== id);
 
     setAllTabs([...filteredTabs]);
+    setIsActive(allTabs[0].id);
   };
 
-  const handleAddTab = (length) => {
-    if (allTabs.length < 6) {
+  const handleAddTab = (length, type, data) => {
+    if (allTabs.length < 20) {
       let defaultTab = {
         name: '',
-        id: !allTabs.length ? 0 : length + 1,
+        id: uuidv4(),
         content: '',
         isDragging: false,
         searchInput: '',
         searchResult: [],
+        isPinned: false,
+        tabColor: '',
       };
-      console.log('alll', length);
+      if (type === 'duplicate') {
+        defaultTab = { ...data };
+        defaultTab.id = uuidv4();
+      }
+
       let newAllTabs = [...allTabs];
       newAllTabs.push(defaultTab);
       setAllTabs([...newAllTabs]);
-      setIsActive(length + 1);
-    }
-  };
 
-  const handleFocus = (id) => {
-    setIsActive(id);
+      let newActiveTabIndex = defaultTab.id;
+      type === 'rightClick'
+        ? setTimeout(() => {
+            setIsActive(newActiveTabIndex);
+          }, 100)
+        : setIsActive(newActiveTabIndex);
+    }
   };
 
   const handleOnDragOver = (e) => {
@@ -49,7 +61,6 @@ const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
               isActive={isActive}
               setIsActive={setIsActive}
               index={index}
-              handleFocus={handleFocus}
               handleCloseTab={handleCloseTab}
               tab={tab}
               allTabs={allTabs}
@@ -57,6 +68,8 @@ const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
               tabItemDrag={tabItemDrag}
               tabItemDragOver={tabItemDragOver}
               handleAddTab={handleAddTab}
+              colorPicker={colorPicker}
+              setColorPicker={setColorPicker}
             />
           </div>
         );

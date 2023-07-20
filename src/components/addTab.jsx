@@ -5,11 +5,13 @@ import { Tooltip } from '@mui/material';
 const AddTab = ({ allTabs, loading, handleAddTab }) => {
   return (
     <>
-      {(allTabs.length < 6 || !loading) && (
+      {(allTabs.length < 22 || !loading) && (
         <Tooltip title='New Tab'>
           <AddIcon
             color='secondary'
-            onClick={() => handleAddTab(allTabs[allTabs.length - 1].id)}
+            onClick={() =>
+              handleAddTab(allTabs[allTabs.length - 1].id, 'onClick')
+            }
             className='addbutton'
             fontSize='12px'
             sx={{ color: '#fff' }}

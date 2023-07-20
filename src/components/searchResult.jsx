@@ -117,13 +117,10 @@ const SearchResult = ({
           },
         })
         .then((response) => {
-          console.log(response);
           setPhotoStatistics(response.data);
         });
     }
   }, [open]);
-
-  console.log(dialogData);
 
   return (
     <div className='searchItemsContainer row d-flex' id='result'>

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import { Divider, Popover, Typography } from '@mui/material';
 import { withStyles } from '@mui/styles';
 
@@ -26,13 +27,16 @@ const TabPopover = ({
   handleAddTab,
   allTabs,
   setAllTabs,
+  setIsActive,
+  colorPicker,
+  setColorPicker,
 }) => {
   const RIGHTCLICK_LIST = [
     {
       label: 'Add new tab to the right',
       yPadding: 5,
       hasDivider: true,
-      onclick: () => handleAddTab(allTabs[allTabs.length - 1].id),
+      onclick: () => handleAddTab(allTabs[allTabs.length - 1].id, 'rightClick'),
       disable: allTabs.length === 5,
     },
     {
@@ -56,24 +60,35 @@ const TabPopover = ({
       disable: allTabs[allTabs.length - 1].id === tab.id,
     },
     {
-      label: 'Pin',
+      label: tab.isPinned ? 'Unpin' : 'Pin',
       yPadding: 5,
       hasDivider: false,
-      //   onclick: handleCloseTab(tab.id),
+      onclick: () => handlePinnedTab(tab.id, tab.isPinned ? 'Unpin' : 'Pin'),
     },
     {
       label: 'Duplicate',
       yPadding: 0,
       hasDivider: false,
-      //   onclick: handleCloseTab(tab.id),
+      onclick: () =>
+        handleAddTab(allTabs[allTabs.length - 1].id, 'duplicate', tab),
+      disable: allTabs.length === 22,
     },
     {
       label: 'Change the color of tab',
       yPadding: 5,
       hasDivider: false,
-      //   onclick: handleCloseTab(tab.id),
+      onclick: () => setColorPicker({ ...colorPicker, id: tab.id }),
     },
   ];
+
+  const handlePinnedTab = (id, type) => {
+    let newAllTabs = [...allTabs];
+    let filteredTab = newAllTabs.filter((t) => t.id === id);
+    filteredTab[0].isPinned = type === 'Pin' ? true : false;
+
+    setAllTabs([...newAllTabs]);
+    setIsActive(id);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);

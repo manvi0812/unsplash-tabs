@@ -8,7 +8,6 @@ import axios from 'axios';
 // import axios from 'axios';
 
 const DisplayTab = React.memo(({ tab, allTabs, setAllTabs, setLoading }) => {
-  console.log(tab, 'tab search');
   const [orientation, setOrientation] = useState('all');
   const [sortBy, setsortBy] = useState('relevance');
   const [toggle, setToggle] = useState(false);

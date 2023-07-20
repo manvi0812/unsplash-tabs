@@ -24,7 +24,6 @@ const WebSearch = ({
   };
 
   useEffect(() => {
-    console.log(shouldChange);
     if (shouldChange) {
       let newAllTabs = [...allTabs];
       let activeTab = newAllTabs.filter((newTab) => newTab.id === tab.id);
@@ -37,12 +36,12 @@ const WebSearch = ({
     <div
       className='websearch-container'
       style={
-        tab?.searchResult.length
+        tab?.searchResult?.length
           ? { backgroundImage: `url(${tab?.searchResult[0].urls?.full})` }
           : {}
       }
     >
-      <div className='mb-5'>
+      <div className='head-wrapper mb-3'>
         <h1 className='unsplash-head'>Unsplash Clone</h1>
         <p className='unsplash-head'>
           The internet’s source for visuals. <br></br> Powered by creators
@@ -65,12 +64,17 @@ const WebSearch = ({
           borderRadius: '30px',
           input: {
             backgroundColor: '#dee2e6',
-            width: '40vw',
+            minWidth: '50vw',
             color: '#101010',
             fontSize: '14px',
             borderRadius: '30px',
             outline: 0,
           },
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleClick(search);
+          }
         }}
         onChange={handleChange}
         InputProps={{
@@ -80,11 +84,10 @@ const WebSearch = ({
                 onClick={() => {
                   handleClick(search);
                   let scrollEl = document.getElementById('result');
-                  console.log(scrollEl);
                   scrollEl.scrollIntoView({ behavior: 'smooth' }, true);
                 }}
                 sx={{
-                  color: '#fff',
+                  color: '#000',
                   cursor: 'pointer',
                   ':hover': {
                     color: '#FF8989',
@@ -97,13 +100,11 @@ const WebSearch = ({
         autoComplete='off'
         variant='outlined'
       />
-      {tab.searchResult.length ? (
+      {tab.searchResult?.length ? (
         <ExpandMoreIcon
-          // sx={{ color: '#fff', fontSize: '2rem' }}
           className='scroll-arrow'
           onClick={() => {
             let scrollEl = document.getElementById('result');
-            console.log(scrollEl);
             scrollEl.scrollIntoView({ behavior: 'smooth' }, true);
           }}
         />

@@ -12,12 +12,12 @@ export default function App() {
       isDragging: false,
       searchInput: '',
       searchResult: [],
+      isPinned: false,
+      tabColor: '',
     },
   ]);
   const [isActive, setIsActive] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  console.log(allTabs);
 
   return (
     <div className='App'>
