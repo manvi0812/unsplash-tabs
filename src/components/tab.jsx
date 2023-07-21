@@ -63,6 +63,7 @@ const Tab = ({
           searchResult: newTab.searchResult,
           isPinned: newTab.isPinned,
           tabColor: newTab.tabColor,
+          coverPhoto: newTab.coverPhoto,
         });
       });
 
@@ -89,6 +90,7 @@ const Tab = ({
           searchResult: newTab.searchResult,
           isPinned: newTab.isPinned,
           tabColor: newTab.tabColor,
+          coverPhoto: newTab.coverPhoto,
         });
       });
 
@@ -205,6 +207,7 @@ const Tab = ({
               outline: 0,
             },
           }}
+          // onKeyDown={(e) => e.stopPropagation()}
           onFocus={() => handleFocus(tab.id)}
           className='tabInput'
         />

@@ -2,9 +2,15 @@
 import { useRef, useState } from 'react';
 import Tab from './tab';
 import AddTab from './addTab';
-import { v4 as uuidv4 } from 'uuid';
 
-const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
+const Tabs = ({
+  allTabs,
+  setAllTabs,
+  isActive,
+  setIsActive,
+  loading,
+  handleAddTab,
+}) => {
   const [colorPicker, setColorPicker] = useState({ id: null, color: '' });
 
   const handleCloseTab = (id) => {
@@ -13,36 +19,6 @@ const Tabs = ({ allTabs, setAllTabs, isActive, setIsActive, loading }) => {
 
     setAllTabs([...filteredTabs]);
     setIsActive(allTabs[0].id);
-  };
-
-  const handleAddTab = (length, type, data) => {
-    if (allTabs.length < 20) {
-      let defaultTab = {
-        name: '',
-        id: uuidv4(),
-        content: '',
-        isDragging: false,
-        searchInput: '',
-        searchResult: [],
-        isPinned: false,
-        tabColor: '',
-      };
-      if (type === 'duplicate') {
-        defaultTab = { ...data };
-        defaultTab.id = uuidv4();
-      }
-
-      let newAllTabs = [...allTabs];
-      newAllTabs.push(defaultTab);
-      setAllTabs([...newAllTabs]);
-
-      let newActiveTabIndex = defaultTab.id;
-      type === 'rightClick'
-        ? setTimeout(() => {
-            setIsActive(newActiveTabIndex);
-          }, 100)
-        : setIsActive(newActiveTabIndex);
-    }
   };
 
   const handleOnDragOver = (e) => {

@@ -3,7 +3,7 @@
 import { Divider, Popover, Typography } from '@mui/material';
 import { withStyles } from '@mui/styles';
 
-const styles = {
+export const styles = {
   paper: {
     width: '168px',
     fontSize: '12px',
@@ -129,7 +129,7 @@ const TabPopover = ({
             className='rightClick-list'
             key={index}
             onClick={() => {
-              item?.onclick();
+              !item?.disable && item?.onclick();
               handleClose();
             }}
             sx={{
